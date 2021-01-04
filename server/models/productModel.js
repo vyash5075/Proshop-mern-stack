@@ -1,4 +1,4 @@
-const Mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const reviewSchema = mongoose.Schema(
   {
     name: {
@@ -18,7 +18,7 @@ const reviewSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-const productSchema = Mongoose.Schema(
+const productSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -73,4 +73,4 @@ const productSchema = Mongoose.Schema(
 );
 
 const Product = mongoose.model("Product", productSchema);
-module.exports = User;
+module.exports = Product;
