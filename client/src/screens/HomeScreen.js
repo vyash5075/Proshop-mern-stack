@@ -13,6 +13,7 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
+  //useselector matlab hamne productList Reducer jo ki store me define hai uski state ko access kiya
   const { loading, error, products } = productList;
 
   useEffect(() => {
