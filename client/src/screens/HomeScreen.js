@@ -4,6 +4,8 @@ import Product from "../components/product";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { listProducts } from "../actions/productActions";
+import Loader from "../components/loader";
+import Message from "../components/message";
 //import products from "../products";
 //use selector is used to select parts of the state
 
@@ -17,19 +19,24 @@ const HomeScreen = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
-  const products = [];
   return (
     <>
       <h1>Latest products</h1>
-      <Row>
-        {products.map((product) => {
-          return (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          );
-        })}
-      </Row>
+      {loading ? (
+        <Loader></Loader>
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Row>
+          {products.map((product) => {
+            return (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={product} />
+              </Col>
+            );
+          })}
+        </Row>
+      )}
     </>
   );
 };
