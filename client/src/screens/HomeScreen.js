@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-//import products from "../products";
+import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/product";
 import { Row, Col } from "react-bootstrap";
+import axios from "axios";
+import { listProducts } from "../actions/productActions";
+//import products from "../products";
+//use selector is used to select parts of the state
+
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get("/api/products");
-      setProducts(data);
-    };
-    fetchProducts(); //calling function
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
+
+  const products = [];
   return (
     <>
       <h1>Latest products</h1>
