@@ -8,6 +8,7 @@ import {
   PRODUCT_DETAILS_FAILED,
 } from "../constants/productConstants";
 
+//thunk middleware
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
