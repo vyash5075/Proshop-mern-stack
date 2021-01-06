@@ -9,10 +9,12 @@ const {
   errorHandler,
 } = require("./middleware/errorMiddleware");
 
+const userRoutes = require("./routes/userRoutes");
 connectDB();
 const PORT = process.env.PORT;
 dotenv.config();
 const app = express();
+app.use(express.json()); //this will allow json data in the body
 
 app.use((req, res, next) => {
   console.log(req.originalUrl);
@@ -24,7 +26,7 @@ app.use((req, res, next) => {
 // });
 
 app.use("/api/products/", productRoutes);
-
+app.use("/api/users", userRoutes);
 //global middleware url hi galat hai .   to handle 404 status code
 app.use(notFound);
 

@@ -2,17 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../models/productModel");
 const asyncHandler = require("express-async-handler");
-
+const {
+  getProducts,
+  getProductById,
+} = require("../controllers/productController");
 //fetch all products
-router.get(
-  "/",
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    res.status(200).json(products);
-    // res.status(401);
-    // throw new Error("Not Authorized");
-  })
-);
+router.route("/").get(getProducts);
 
 //fetch product by id
 router.get(
