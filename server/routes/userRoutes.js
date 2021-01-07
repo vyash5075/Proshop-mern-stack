@@ -10,10 +10,8 @@ const {
 } = require("../controllers/userController");
 
 router.post("/login", authUser);
-router
-  .route("/profile")
-  .get(protect, getUserProfile)
-  .put(protect, updateUserProfile);
+router.route("/profile").get(protect, getUserProfile);
+
 router.route("/").post(registerUser);
 
 module.exports = router;
