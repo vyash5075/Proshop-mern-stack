@@ -5,12 +5,18 @@ const Footer = () => {
     <footer>
       <Container>
         <Row>
-          <Col className="text-center py-3">
-            Copyright &copy;2020|All rights Reserved Designed by Yash Verma
+          <Col style={{ fontSize: "20px" }} className="text-center py-3">
+            Copyright &copy;2020|All rights Reserved Designed with{" "}
+            <span>
+              <i
+                className="fa fa-heart"
+                style={{ fontSize: "26px", color: "red" }}
+              ></i>
+            </span>{" "}
+            by Yash Verma
           </Col>
         </Row>
       </Container>
-      footer
     </footer>
   );
 };

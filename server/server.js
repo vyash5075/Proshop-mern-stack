@@ -3,6 +3,7 @@ const products = require("./data/products.js");
 const connectDB = require("./db");
 const dotenv = require("dotenv");
 const productRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const {
   notFound,
   errorhandler,
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 
 app.use("/api/products/", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 //global middleware url hi galat hai .   to handle 404 status code
 app.use(notFound);
 
