@@ -5,21 +5,22 @@ const asyncHandler = require("express-async-handler");
 const {
   getProducts,
   getProductById,
+  deleteProduct,
+  createProduct,
+  updateProduct,
+  createProductReview,
+  getTopProducts,
 } = require("../controllers/productController");
-//fetch all products
-router.route("/").get(getProducts);
 
-//fetch product by id
-router.get(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
-    if (product) {
-      res.status(200).json(product);
-    } else {
-      res.status(404);
-      throw new Error("Product not found");
-    }
-  })
-);
+const { protect, admin } = require("../middleware/authMiddleware");
+//fetch all products
+router.route("/").get(getProducts).post(protect, admin, createProduct);
+router.route("/:id/reviews").post(protect, createProductReview);
+router.get("/top", getTopProducts);
+router
+  .route("/:id")
+  .get(getProductById)
+  .delete(protect, admin, deleteProduct)
+  .put(protect, admin, updateProduct);
+
 module.exports = router;
