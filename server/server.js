@@ -6,6 +6,7 @@ const path = require("path");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
+const morgan = require("morgan");
 const {
   notFound,
   errorhandler,
@@ -17,6 +18,9 @@ connectDB();
 const PORT = process.env.PORT;
 dotenv.config();
 const app = express();
+if (process.env.NODE_ENV == "development") {
+  app.use(morgan("dev"));
+}
 app.use(express.json()); //this will allow json data in the body
 
 app.use((req, res, next) => {
