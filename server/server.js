@@ -28,9 +28,23 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.get("/", (req, res) => {
-//   res.send("Api is running...");
-// });
+// Setup CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+});
+
+app.get("/test", (req, res) => {
+  res.send("Api is running...");
+});
 
 app.use("/api/products/", productRoutes);
 app.use("/api/users", userRoutes);
@@ -43,6 +57,7 @@ app.get("/api/config/paypal", (req, res) =>
 
 //const __dirname=path.resolve()
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
 //global middleware url hi galat hai .   to handle 404 status code
 app.use(notFound);
 

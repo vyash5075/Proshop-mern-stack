@@ -6,9 +6,13 @@
   "scripts": {
     "type": "module",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "data:import": " node seeder",
     "data:destroy": " node seeder -d"
+  },
+  "engines": {
+    "node": "^12",
+    "npm": "^6"
   },
   "author": "",
   "license": "ISC",
